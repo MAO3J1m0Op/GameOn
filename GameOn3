@@ -1,0 +1,213 @@
+using System; // Includes system namespace into program
+
+namespace GameOn3 {
+    
+    // NOTE: public means other classes can access it.
+
+    public class hub { // The beloved login system (and menu)
+
+        static void Main () { // In C#, this is the first function run. Notice how it is capitalized.
+            functions f = new functions(); // Creates a new instance of the functions class and assigns it to variable 'f'. No variables will be saved when this is done. This allows me to access the methods from this class.
+
+            string password; // Just like C++, all variables' type must be declared first.
+
+            f.print("Enter a Username: "); // This was pulled from the functions class. The programmer must specify what class it is from, or the program will search for the function locally and fail.
+            globals.name = f.input(); // Writing into a static variable from the globals class
+            f.print("Enter the GameOn3 Password: ");
+            password = f.input();
+            if (password == "RIP GameOn2") { // If/else and else if works just like in C++.
+                hub.menu(); // Runs menu from this class
+            } else {
+                f.print("Login Failed.");
+            }
+        }
+
+        static void menu () { // This can only be accessed locally from a static method if this is too
+            math math = new math();
+            eightball eightball = new eightball();
+            binary binary = new binary();
+            functions f = new functions();
+            string run = null; // 'run' takes up no space.
+
+            f.print("Login Successful\nWelcome, " + globals.name + "!"); // Reads 'name' out from globals class
+            while (run != "exit") { // Whiles function just like in C++
+                f.print("Enter run command:");
+                run = f.input();
+                switch (run) { // Switches also work just like in C++
+                    case "math" : math.main(); break;
+                    case "eightball" :  eightball.main(); break;
+                    case "binary" : binary.main(); break;
+                }
+            }
+        }
+    }
+    
+    public class math {
+        
+        public void main () { // Called main for my own reasoning, not the program's
+            functions f = new functions();
+            
+            f.print("Run math.calculator or math.quiz?\n [1] math.calculator\n [2] math.quiz");
+            globals.answer = f.input();
+            switch (globals.answer) { // Reading answer from globals
+                case "1" : calculator(); break;
+                case "2" : quiz(); break;
+            }
+        }
+        
+        void calculator () {
+            functions f = new functions();
+
+            double a;
+            double b;
+            char operation;
+
+            f.print("Enter first number:");
+            a = Convert.ToDouble(f.input());
+            f.print("Enter second number:");
+            b = Convert.ToDouble(f.input());
+            f.print("Enter operation:");
+            operation = Convert.ToChar(f.input());
+            switch (operation) {
+                case '+' : f.print("Answer: " + Convert.ToString(a + b)); break; // Strings are spliced together like in Python.
+                case '-' : f.print("Answer: " + Convert.ToString(a - b)); break;
+                case '*' : f.print("Answer: " + Convert.ToString(a * b)); break;
+                case '/' : f.print("Answer: " + Convert.ToString(a / b)); break;
+            }
+        }
+        
+        void quiz () {
+            functions f = new functions();
+            Random r = new System.Random(); // Creates new instance of random class from System namespace.
+            
+            int a;
+            int b;
+            double score = 0;
+            const int qs = 5; // How many questions in the quiz. Cannot be modified outside of this line
+            const int rngmax = 10; // Highest value of the RNG
+            
+            for (int n = 0;n < qs;++n) { // For loops are just like in C++
+                a = r.Next(0,rngmax); // RNG at work
+                b = r.Next(0,rngmax);
+                f.print("Question " + Convert.ToString(n + 1) + ": " + Convert.ToString(a) + " + " + Convert.ToString(b) + " =");
+                globals.intans = f.intput();
+                if (a + b == globals.intans) {
+                    f.print("Correct!");
+                    ++score;
+                } else {
+                    f.print("Incorrect. The correct answer is " + Convert.ToString(a + b) + ".");
+                }
+            }
+            f.print("Final Score: " + Convert.ToString(score) + "/" + Convert.ToString(qs) + "!\nThat\'s " + Convert.ToString(score / qs * 100) + "%!");
+        }
+    }
+    
+    public class eightball {
+        public void main () {
+            functions f = new functions();
+            Random r = new System.Random();
+            
+            int choice;
+            string question = null;
+            
+            while (question != "exit") {
+                f.print("What is your question?");
+                question = f.input();
+                choice = r.Next(1,5);
+                switch (choice) {
+                    case 1 : f.print("Yes."); break;
+                    case 2 : f.print("No."); break;
+                    case 3 : f.print("It is certain."); break;
+                    case 4 : f.print("Don't count on it"); break;
+                    case 5 : f.print("Ask again later."); break;
+                }
+            }
+        }
+    }
+    
+    public class binary {
+        const int topnum = 64;
+        bool[] p = new bool[6];
+        
+        public void main () {
+            functions f = new functions();
+            
+            f.print("Think of a number between 1 and " + Convert.ToString(topnum) + ".\nPress enter when you have it.");
+            f.input();
+            dispnums(1);
+            f.print("Is you number listed above? (y/n):");
+            p[0] = f.ynput();
+            dispnums(2);
+            f.print("Is your number listed above? (y/n):");
+            p[1] = f.ynput();
+            dispnums(4);
+            f.print("Is your number listed above? (y/n):");
+            p[2] = f.ynput();
+            dispnums(8);
+            f.print("Is your number listed above? (y/n):");
+            p[3] = f.ynput();
+            dispnums(16);
+            f.print("Is your number listed above? (y/n):");
+            p[4] = f.ynput();
+            dispnums(32);
+            f.print("Is your number listed above? (y/n):");
+            p[5] = f.ynput();
+            f.print("Is your number " + Convert.ToString(ti(p[5]) * 32 + ti(p[4]) * 16 + ti(p[3]) * 8 + ti(p[2]) * 4 + ti(p[1]) * 2 + ti(p[0]) + 1) + "?");
+        }
+        
+        void dispnums (int place) {
+            functions f = new functions();
+            
+            int plus = 0;
+            
+            for (int n = 0;n < topnum;++n) {
+                if (plus == place * 2) {
+                    plus = 0;
+                } if (plus >= place) {
+                    f.print(Convert.ToString(n + 1));
+                }
+                ++plus;
+            }
+        }
+        
+        int ti (bool value) {
+            return Convert.ToInt32(value);
+        }
+    }
+
+    public static class globals { // Notice how this class and all its members are labeled static.
+        public static string answer;
+        public static int intans;
+
+        public static string name;
+    }
+
+    public class functions {
+        
+        public void print (string value) { // Functions and parameters are just like C++
+            Console.WriteLine(value); // Always begins new line at the end.
+        }
+        
+        public string input () {
+            return Console.ReadLine(); // getline() but better
+        }
+        
+        public int intput () {
+            return Convert.ToInt32(Console.ReadLine()); // Takes string input and converts it to an int.
+        }
+        
+        public bool ynput () {
+            string yn;
+            while (true) {
+                yn = Console.ReadLine();
+                if (yn == "y") {
+                return true;
+                } else if (yn == "n") {
+            return false;
+                } else {
+                Console.WriteLine("ERROR: Expecting \'y\' or \'n\', got {0}.", yn); // This works as well for string splicing.
+                }
+            }
+        }
+    }
+}
