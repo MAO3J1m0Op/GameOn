@@ -1,0 +1,237 @@
+import random
+
+print ("Enter your Username")
+name = input (">>> ")
+while True:
+    print ("Enter your Password")
+    password = input (">>> ")
+    if "PythonIsAwesome"==password:
+        print ("Welcome " + name + "!")
+        while True:
+            print ("Enter string for software.")
+            run = input (">>> ")
+            if "8 ball"==run:
+                print ("Welcome to the magic 8 ball software! Ask any yes or no question!")
+                while True:
+                
+                    answer = ["Yes" , "No" , "Maybe" , "I don't know" , "That is the dumbest question I have ever heard."]
+                
+                    print ("What is your question?")
+                    question = input (">>> ")
+                    if "quit" == question:
+                        break
+                    elif "die" in question:
+                        print ("Why such a brutal question?")
+                    elif "love" in question:
+                        print ("This is Magic 8 Ball, not a love show!")
+                    elif "What is the dumbest question you have heard?" in question:
+                        print ("This one")
+                    else:
+                        print (random.choice(answer))
+            elif "profile edit"==run:
+                print ("Starting " + name + "'s profile")
+                print ("List your hobbies:")
+                hobby = input (">>> ")
+                print ("What is your Dream?")
+                dream = input (">>> ")
+                print ("Are you Male or Female?")
+                gender = input (">>> ")
+                print ("What city do you live in?")
+                city = input (">>> ")
+                print ("What country do you live in?")
+                country = input (">>> ")
+                print ("How old are you (in years)?")
+                age = input (">>> ")
+                print ("This is what I learned about you, " + name + ".  You like " + hobby + "; your dream is " + dream + "; your gender is " + gender + "; you live in " + city + ", " + country + "; and you are " + age + " years old.")
+            elif "profile read"==run: 
+                print ("This is what I learned about you, " + name + ".  You like " + hobby + "; your dream is " + dream + "; your gender is " + gender + "; you live in " + city + ", " + country + "; and you are " + age + " yeare old.")
+            elif "profile"==run:
+                print ("Error: software 'profile' no longer exists.")
+            elif "math"==run:
+                print ("Choose a level.")
+                level = input (">>> ")
+                if "1"==level:
+                    print ("Question 1:")
+                    math1 = input ("1+1=")
+                    if "2"==math1:
+                        print ("Correct!")
+                    elif "close"==math1:
+                        print ("Closing Math Challenge...")
+                    else:
+                        print ("1+1=2, not '" + math1 + "'!")
+                    print ("Question 2:")
+                    math2 = input ("2+7=")
+                    if "9"==math2:
+                        print ("Correct!")
+                    elif "close"==math2:
+                        print ("Closing Math Challenge...")
+                    else:
+                        print ("2+7=9, not '" + math2 + "'!")
+                    print ("Question 3:")
+                    math3 = input ("13+10=")
+                    if "23"==math3:
+                        print ("Correct!")
+                    elif "close"==math3:
+                        print ("Closing Math Challenge...")
+                    else:
+                        print ("13+10=23, not'" + math3 + "'!")
+                    print ("Question 4:")
+                    math4 = input ("27+36=")
+                    if "63"==math4:
+                        print ("Correct!")
+                    elif "close"==math4:
+                        print ("Closing Math Challenge...")
+                    else:
+                        print ("27+36=63, not '" +math4 + "'!")
+                    print ("Final Question:")
+                    math5 = input ("256+372=")
+                    if "628"==math5:
+                        print ("Correct!")
+                    elif "close"==math5:
+                        print ("Closing Math Challenge...")
+                    else:
+                        print ("256+372=628, not '" + math5 + "'!")
+                    print ("Here are the results:")
+                    print ("Qusetion 1 - 1+1 - You answered '" + math1 + "' - Correct answer is 2.")
+                    print ("Qusetion 2 - 2+7 - You answered '" + math2 + "' - Correct answer is 9.")
+                    print ("Question 3 - 13+10 - You answered '" + math3 + "' - Correct answer is 23.")
+                    print ("Question 4 - 27+36 - You answered '" + math4 + "' - Correct answer is 63.")
+                    print ("Question 5 - 256+372 - You answered '" + math5 + "' - Correct answer is 628.")
+                elif "2"==level:
+                    print ("Question 1:")
+                    math6 = input ("2-1=")
+                    if "1"==math6:
+                        print ("Correct!")
+                    elif "close"==math6:
+                        print ("Closing Math Challenge...")
+                    else:
+                        print ("2-1=1, not '" + math6 + "'!")
+                    print ("Question 2:")
+                    math7 = input ("15-7=")
+                    if "8"==math7:
+                        print ("Correct!")
+                    elif "close"==math7:
+                        print ("Closing Math Challenge...")
+                    else:
+                        print ("15-7=8, not '" + math7 + "'!")
+                    print ("Question 3:")
+                    math8 = input ("73-10=")
+                    if "63"==math8:
+                        print ("Correct!")
+                    elif "close"==math8:
+                        print ("Closing Math Challenge...")
+                    else:
+                        print ("73-10=63, not '" + math8 + "'!")
+                    print ("Question 4:")
+                    math9 = input ("94-37=")
+                    if "57"==math9:
+                        print ("Correct!")
+                    elif "close"==math9:
+                        print ("Closing Math Challenge...")
+                    else:
+                        print ("94-37=57, not '" + math9 + "'!")
+                    print ("Final Question:")
+                    math10 = input ("483-276=")
+                    if "197"==math10:
+                        print ("Correct!")
+                    elif "close"==math10:
+                        print ("Closing Math Challenge...")
+                    else:
+                        print ("483-276=197, not '" + math10 + "'!")
+                    print ("Here are the results:")
+                    print ("Question 1 - 2-1 - You answered '" + math6 + "' - Correct answer is 1.")
+                    print ("Question 2 - 15-7 - You answered '" + math7 + "' - Correct answer is 8.")
+                    print ("Question 3 - 73-10 - You answered '" + math8 + "' - Correct answer is 63.")
+                    print ("Question 4 - 94-37 - You answered '" + math9 + "' - Correct answer is 57.")
+                    print ("Question 5 - 483-276 - You answered '" + math10 + "' - Correct answer is 197.")    
+                else:
+                    print ("Error: '" + level + "' not a number 1-2")
+            elif "log off"==run:
+                print ("Logging " + name + " off...")
+                print ("Press Enter (or return) to confirm logoff.")
+                confirmlogoff = input ("Or you can type in a character before pressing enter to cancell logging off.")
+                if ""==confirmlogoff:
+                    while True:
+                        print ("___|-\\-\\-\\/-/\\-/-\\/\\/\\-/\\-/-\\/-\\/-\\____-/-\\/-\\-/\\-\\_\\-/|/\\/\\/_|_/\\_/|_-||-/\\/__\\/")
+                else:
+                    print ("Canceled " + name + "'s logoff.")
+            elif "binary"==run:
+                print ("Pick any number between 0 and 15. Press enter when you are ready.")
+                binary = input ("")
+                print ("Is your number listed below?")
+                print ("1, 3, 5, 7, 9, 11, 13, 15")
+                print ("[!] Use '0' for no and '1' for yes.")
+                place1 = input (">>> ")
+                print ("Is your number listed below?")
+                print ("2, 3, 6, 7, 10, 11, 14, 15")
+                print ("[!] Use '0' for no and '1' for yes.")
+                place2 = input (">>> ")
+                print ("Is your number listed below?")
+                print ("4, 5, 6, 7, 12, 13, 14, 15")
+                print ("[!] Use '0' for no and '1' for yes.")
+                place4 = input (">>> ")
+                print ("Is your number listed below?")
+                print ("8, 9, 10, 11, 12, 13, 14, 15")
+                print ("[!] Use '0' for no and '1' for yes.")
+                place8 = input (">>> ")
+                print ("Your number is " + place8 + place4 + place2 + place1 + ".")
+                if "1"==place8:
+                    if "1"==place4:
+                        if "1"==place2:
+                            if "1"==place1:
+                                print ("15")
+                            else:
+                                print ("14")
+                        else:
+                            if "1"==place1:
+                                print ("13")
+                            else:
+                                print ("12")
+                    else:
+                        if "1"==place2:
+                            if "1"==place1:
+                                print ("11")
+                            else:
+                                print ("10")
+                        else:
+                            if "1"==place1:
+                                print ("9")
+                            else:
+                                print ("8")
+                else:
+                    if "1"==place4:
+                        if "1"==place2:
+                            if "1"==place1:
+                                print ("7")
+                            else:
+                                print ("6")
+                        else:
+                            if "1"==place1:
+                                print ("5")
+                            else:
+                                print ("4")
+                    else:
+                        if "1"==place2:
+                            if "1"==place1:
+                                print ("3")
+                            else:
+                                print ("2")
+                        else:
+                            if "1"==place1:
+                                print ("1")
+                            else:
+                                print ("0")
+            
+            else:
+                print ("Error: software '" + run + "' undefined ")
+    elif "Help" in password:
+        print ("Password is PythonIsAwesome")
+        print ("Softwares availble:")
+        print ("Magic 8 ball (string: 8 ball)")
+        print ("Edit Profile (string: profile edit)")
+        print ("Read Profile (string: profile read)")
+        print ("Math Challenge (string: math)")
+        print ("Dice Randomizer (Coming Soon)")
+        print ("More Coming Soon")
+    else:
+        print ("Incorrect Password. Please try again.")
