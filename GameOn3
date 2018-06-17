@@ -4,7 +4,7 @@ namespace GameOn3 {
     
     // NOTE: public means other classes can access it.
 
-    public class hub { // The beloved login system (and menu)
+    class hub { // The beloved login system (and menu)
 
         static void Main () { // In C#, this is the first function run. Notice how it is capitalized.
             functions f = new functions(); // Creates a new instance of the functions class and assigns it to variable 'f'. No variables will be saved when this is done. This allows me to access the methods from this class.
@@ -12,7 +12,7 @@ namespace GameOn3 {
             string password; // Just like C++, all variables' type must be declared first.
 
             f.print("Enter a Username: "); // This was pulled from the functions class. The programmer must specify what class it is from, or the program will search for the function locally and fail.
-            globals.name = f.input(); // Writing into a static variable from the globals class
+            profile.name = f.input(); // Writing into a static variable from the profile class
             f.print("Enter the GameOn3 Password: ");
             password = f.input();
             if (password == "RIP GameOn2") { // If/else and else if works just like in C++.
@@ -26,17 +26,21 @@ namespace GameOn3 {
             math math = new math();
             eightball eightball = new eightball();
             binary binary = new binary();
+            dice dice = new dice();
             functions f = new functions();
             string run = null; // 'run' takes up no space.
 
-            f.print("Login Successful\nWelcome, " + globals.name + "!"); // Reads 'name' out from globals class
+            f.print("Login Successful\nWelcome, " + profile.name + "!"); // Reads 'name' out from profile class
             while (run != "exit") { // Whiles function just like in C++
-                f.print("Enter run command:");
+                f.print("Enter run command\nType 'help' for more info:");
                 run = f.input();
                 switch (run) { // Switches also work just like in C++
+                    case "help" : f.print("Current Functions:\n math: calculator and math quiz\n eightball: Magic 8 Ball\n binary: Number guessing program\n dice: Dice rolling program\n profile: view your profile"); break;
                     case "math" : math.main(); break;
                     case "eightball" :  eightball.main(); break;
                     case "binary" : binary.main(); break;
+                    case "dice" : dice.main(); break;
+                    case "profile" : profile.main(); break;
                 }
             }
         }
@@ -174,12 +178,58 @@ namespace GameOn3 {
             return Convert.ToInt32(value);
         }
     }
+    
+    public class dice {
+        public void main () {
+            functions f = new functions();
+            Random r = new System.Random();
+            
+            int roll;
+            int max;
+            int qty;
+            int total = 0;
+            
+            f.print("Enter the maximum value of the dice:");
+            max = f.intput();
+            f.print("Enter the number of dice you would like to roll:");
+            qty = f.intput();
+            f.print("Results:");
+            for (int n = 0;n < qty;++n) {
+                roll = r.Next(1,max + 1);
+                Console.WriteLine("  {0}", roll);
+                total += roll;
+            }
+            Console.WriteLine(" Total: {0}", total);
+        }
+    }
+    
+    public static class profile {
+        public static string name; // Valie can be accessed through other classes
+        static string fname = null; // These don't reset
+        static string lname = null;
+        static string bio = null;
+        public static void main () {
+            functions f = new functions();
+            
+            bool run = true; // This resets every time this function is called.
+            
+            while (run == true) {
+                f.print("Profile:\n [1] Name: " + fname + " " + lname + "\n [2] Username: " + name + "\n [3] Bio: " + bio + "\n [0] exit");
+                globals.answer = f.input();
+                switch (globals.answer) {
+                    case "1" : f.print("First Name:"); fname = f.input(); f.print("Last Name:"); lname = f.input(); break;
+                    case "2" : f.print("Username:");
+                        name = f.input(); break;
+                    case "3" : f.print("Bio:"); bio = f.input(); break;
+                    case "0" : run = false; break;
+                }
+            }
+        }
+    }
 
     public static class globals { // Notice how this class and all its members are labeled static.
         public static string answer;
         public static int intans;
-
-        public static string name;
     }
 
     public class functions {
